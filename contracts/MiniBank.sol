@@ -15,12 +15,17 @@ contract MiniBank{
     }
 
     function withdraw(uint256 amount) external {
+
+        //check
         require(balances[msg.sender] >= amount, "MiniBank: insufficient balance");
 
+        //effect
         balances[msg.sender] -=amount;
 
+        //interaction
         payable(msg.sender).transfer(amount);
 
+        //logs
         emit Withdrawn(msg.sender, amount);
     }
 
